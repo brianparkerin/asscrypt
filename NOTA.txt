@@ -1,0 +1,33 @@
+
+# Mejoras a aplicar al proyecto...
+
+
+
+
+# 2. Sería mas practico que aquellos valores los tome directamente desde un input de consola. Donde pregunte paso a paso lo que requiere, "nombre_archivo.txt", "contraseña", "nombre_fake_archivo.pdf"
+Ademas que pueda pasarle la ruta donde esta el archivo... yque funcione igual para linux o windows...
+Aparte que añada una barra de progreso mientras encripta o desencripta el/los archivos
+
+# 3. Que el script me funcione para cualquier extension de archivo, no importa la extension del archivo original o el archivo encryptado, me refiero a la extension si es ".pdf, .docx, .excel, .txt, .png, .jpg, .webp"
+
+# 4. Adicional que me deje un archivo txt con la clave de desencriptacion del archivo. Ya que si despues alguien más tiene desencriptar ese archivo en otro lugar, tenga la llave para hacerlo.
+o bueno, nose como funciona el sistema ahi, basta solo con tener el archivo y saber la contraseña?....
+
+# 5. Aparte de haber encriptado el archivo, cuando se intente abrir que no muestre nada, que muestre una alerta que avise que el archivo ha sido encriptado, y que pida una contraseña. [si la contraseña es correcta que se desencripte]. 
+Además, que solo se pueda desencriptar con el escript original que desarrollamos para encriptar y desencriptar el/los archivos.
+
+# 6. Por ultimo darle la habilidad de encriptar cualquier cosa, como un sistema operativo, o un archivo .ISO, un disco virtual como con extension .VDK, .VHD, .VHDD, o una USB, Disco duro de windows, o particion de linux, o cualquier medio de almacenamiento eterno.
+
+# 7. Una vez perfeccionados los scripts, convertirlos en una Aplicacion con interfaz grafica intuitiva para windows o linux, con botones faciles como la interfaz de veracrypt o cryomator.
+facil, intuitiva, y amigable, que maneje los dos sistemas, de encriptacion de un archivo, grupo de archivos y vaules. Aparte de cuando se encripten Discos, y otras cosas más...
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+import os
+import json
+import getpass
+from tqdm import tqdm
+from hashlib import sha256
+from argon2 import PasswordHasher
+from argon2.exceptions import VerifyMismatchError
+from cryptography.hazmat.primitives import hashes, hmac
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
+
+def generate_key(password, salt):
+    ph = PasswordHasher(time_cost=2, memory_cost=102400, parallelism=8, hash_len=32)
+    return ph.hash(password + salt.hex()).encode('utf-8')[:32]
+
+def encrypt_file(file_name, password, output_name):
+    try:
+        if not os.path.isfile(file_name):
+            raise FileNotFoundError(f"File '{file_name}' does not exist.")
+        
+        salt = os.urandom(16)
+        key = generate_key(password, salt)
+        hmac_key = os.urandom(32)
+        
+        with open(file_name, "rb") as file:
+            file_data = file.read()
+
+        original_hash = sha256(file_data).hexdigest()
+        
+        iv = os.urandom(12)
+        cipher = Cipher(algorithms.AES(key), modes.GCM(iv), backend=default_backend())
+        encryptor = cipher.encryptor()
+        
+        encrypted_data = bytearray()
+        chunk_size = 1024
+        for i in tqdm(range(0, len(file_data), chunk_size), desc="Encrypting"):
+            chunk = file_data[i:i+chunk_size]
+            encrypted_data.extend(encryptor.update(chunk))
+        encrypted_data.extend(encryptor.finalize())
+        
+        hmac_instance = hmac.HMAC(hmac_key, hashes.SHA256(), backend=default_backend())
+        hmac_instance.update(encrypted_data)
+        hmac_digest = hmac_instance.finalize()
+        
+        metadata = json.dumps({"original_name": file_name, "hmac_key": hmac_key.hex(), "original_hash": original_hash})
+        cipher_metadata = Cipher(algorithms.AES(key), modes.GCM(iv), backend=default_backend())
+        encryptor_metadata = cipher_metadata.encryptor()
+        encrypted_metadata = encryptor_metadata.update(metadata.encode()) + encryptor_metadata.finalize()
+        
+        metadata_length = len(encrypted_metadata)
+        
+        with open(output_name, "wb") as file:
+            file.write(salt + iv + metadata_length.to_bytes(4, 'big') + encrypted_metadata + hmac_digest + encrypted_data)
+        
+        os.chmod(output_name, 0o400)
+        os.remove(file_name)
+        
+        print(f"File '{file_name}' has been encrypted and saved as '{output_name}'.")
+
+    except FileNotFoundError as fnf_error:
+        print(fnf_error)
+    except Exception as e:
+        print(f"An error occurred during encryption: {e}")
+
+if __name__ == "__main__":
+    file_name = input("Enter the name of the file to encrypt: ")
+    password = getpass.getpass("Enter the password: ")
+    encrypted_file_name = input("Enter the fake name for the encrypted file: ")
+    
+    encrypt_file(file_name, password, encrypted_file_name)
