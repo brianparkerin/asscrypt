@@ -1,48 +1,45 @@
+# SecureFile - Advanced File Encryption Utility
 
-### ------------- AssCrypt --------------- ###
+![SecureFile Logo](assets/securefile_logo.png)
 
-    _             ____                  _   
-   / \   ___ ___ / ___|_ __ _   _ _ __ | |_ 
-  / _ \ / __/ __| |   | '__| | | | '_ \| __|
- / ___ \\__ \__ \ |___| |  | |_| | |_) | |_ 
-/_/   \_\___/___/\____|_|   \__, | .__/ \__|
-                            |___/|_|        
+SecureFile is a robust, military-grade file encryption tool built for the Kali Linux environment. Designed with security in mind, SecureFile ensures that your sensitive data remains protected from unauthorized access. This utility leverages advanced cryptographic algorithms and modern security practices to provide unparalleled file encryption and decryption capabilities.
 
+## Features
 
-### ------------- AssCrypt --------------- ###
+- **Strong Encryption**: Utilizes AES-GCM with Argon2 for key derivation, ensuring high security.
+- **File Integrity Checks**: Incorporates HMAC to verify file integrity during encryption and decryption.
+- **Cross-Format Support**: Works with any file format, from text files to images and executables.
+- **Metadata Protection**: Encrypts file metadata to prevent leakage of sensitive information.
+- **Error Handling**: Provides clear error messages for incorrect inputs and potential security issues.
+- **File Deletion**: Securely deletes original files after encryption/decryption, minimizing the risk of data leakage.
+- **Kali Linux Integration**: Seamlessly integrates with the Kali Linux environment for easy deployment.
 
+## Table of Contents
 
-# Explicación:
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Encrypting Files](#encrypting-files)
+  - [Decrypting Files](#decrypting-files)
+- [Advanced Security Features](#advanced-security-features)
+- [Contributing](#contributing)
+- [License](#license)
 
-*Función de Encriptación (encrypt_file):
-    - Toma un parámetro adicional output_name, que es el nombre falso para el archivo encriptado.
-    - Escribe los datos encriptados con este nuevo nombre de archivo.
+## Installation
 
-*Función de Desencriptación (decrypt_file):
-    - Toma un parámetro adicional output_name, que es el nombre para el archivo desencriptado.
-    - Escribe los datos desencriptados con este nuevo nombre de archivo.
+### Prerequisites
 
+Before installing SecureFile, ensure you have the following dependencies installed:
 
-# Uso:
-    - Especifica el nombre real del archivo y la contraseña.
-    - Especifica un nombre falso para el archivo encriptado con una extensión diferente.
-    - Especifica un nombre deseado para el archivo desencriptado.
+- Python 3.10 or later
+- `pip` (Python package installer)
+- Kali Linux (or compatible Linux environment)
 
+### Basic Setup
 
-# Cómo Usar
-    - Guarda el script en un archivo Python, por ejemplo, encrypt_decrypt_file_aes.py.
-    - Coloca el archivo que deseas encriptar en el mismo directorio que el script.
+Follow these steps to clone the project, configure it, and start using SecureFile.
 
+1. **Clone the repository:**
 
-# Ejecuta el script:
-Guradar como: 'python encrypt_decrypt_file_aes.py'
-
-
-# El script hará:
-    - Encriptar el archivo original y guardarlo con el nombre falso y la extensión especificada.
-    - Desencriptar el archivo falso y guardar la salida con el nombre real especificado.
-    - Asegúrate de usar la misma contraseña tanto para la encriptación como para la desencriptación. 
-
-El nombre y la extensión del archivo encriptado no revelarán la verdadera naturaleza de su contenido, añadiendo una capa extra de seguridad.
-
-
+   ```bash
+   git clone https://github.com/yourusername/securefile.git
+   cd securefile
