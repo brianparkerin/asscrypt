@@ -41,5 +41,5 @@ Follow these steps to clone the project, configure it, and start using SecureFil
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/securefile.git
+   git clone https://github.com/brianparkerin/asscrypt.git
    cd securefile
