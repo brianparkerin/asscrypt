@@ -159,18 +159,12 @@ This project is licensed under the MIT License. See the [LICENSE](#license) file
 ___
 
 
-### SecureFile - Protecting Your Data, One File at a Time.
+<center>
+
+### SecureFile - Protecting Your Data, One File at a Time
+</center>
 
 
-### Detalles de diseño en Markdown:
-
-- **Encabezados**: Los encabezados están bien organizados para hacer que la lectura y navegación sea fácil y clara.
-- **Código de ejemplo**: Los bloques de código están formateados en Markdown usando la sintaxis de triple backtick (```) para una correcta visualización en GitHub.
-- **Tabla de Contenidos**: Incluye enlaces a secciones dentro del mismo documento para facilitar la navegación.
-- **Instrucciones de uso**: Están formateadas para que los comandos y ejemplos se muestren de forma clara y fácil de seguir.
-- **Comandos básicos**: Añadidos para facilitar la clonación, instalación y ejecución del proyecto.
-
-Este archivo README está diseñado para integrarse perfectamente con el repositorio de GitHub y proporciona una presentación profesional del proyecto SecureFile.
 
 
 
