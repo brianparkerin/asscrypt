@@ -1,10 +1,7 @@
-Package              Version
--------------------- -------
-argon2-cffi          23.1.0
-argon2-cffi-bindings 21.2.0
-cffi                 1.16.0
-cryptography         43.0.0
-pip                  22.0.2
-pycparser            2.22
-setuptools           59.6.0
-tqdm                 4.66.4
+cryptography==43.0.0
+tqdm==4.66.4
+argon2-cffi==23.1.0
+argon2-cffi-bindings==21.2.0
+cffi==1.16.0
+pycparser==2.22  # Dependencia de cffi
+
