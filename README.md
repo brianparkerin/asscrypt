@@ -1,6 +1,6 @@
 <div align="center">
-  <h1>QR Code Generator with Custom Logo</h1>
-  <img src="./assets/asscrypt_logo.png" alt="Rudimental QR Code" width="300"/>
+  <h1>AssCrypt - Advanced File Encryption Utility</h1>
+  <img src="./assets/asscrypt_logo.png" alt="AssCrypt Logo" width="300"/>
 </div>
 
 SecureFile is a robust, military-grade file encryption tool built for the Kali Linux environment. Designed with security in mind, SecureFile ensures that your sensitive data remains protected from unauthorized access. This utility leverages advanced cryptographic algorithms and modern security practices to provide unparalleled file encryption and decryption capabilities.
