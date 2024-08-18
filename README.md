@@ -139,15 +139,15 @@ The script will prompt you for the following:
 ### Advanced Security Features
 
 
-- HMAC for Integrity: Ensures that your file has not been tampered with during encryption or decryption.
+- **HMAC for Integrity:** Ensures that your file has not been tampered with during encryption or decryption.
 
-- Argon2 Key Derivation: Protects against brute-force attacks by generating a secure key from your password.
+- **Argon2 Key Derivation:** Protects against brute-force attacks by generating a secure key from your password.
 
-- Metadata Encryption: Prevents attackers from gaining insights into your file’s contents.
+- **Metadata Encryption:** Prevents attackers from gaining insights into your file’s contents.
 
-- Strict File Permissions: Sets encrypted files to read-only, making them resistant to unauthorized modifications.
+- **Strict File Permissions:** Sets encrypted files to read-only, making them resistant to unauthorized modifications.
 
-- Error Handling: Provides detailed messages for incorrect passwords, missing files, or corrupted data.
+- **Error Handling:** Provides detailed messages for incorrect passwords, missing files, or corrupted data.
 
 
 ### Contributing
