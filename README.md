@@ -9,6 +9,13 @@ Este proyecto esta pensado para ser una poderosa herramienta util para encriptar
 
 La velocidad de encriptacion depende de la cantidad de archivos a encriptar, la capacidad de computo y la fuerza del algoritmo de encriptacion.
 
+corregir:
+
+- el script como tal.
+- añadir las features del logo en ascii para cuando se corra el comando inciador.
+- que pueda definirse directamente en el sistema o terminal como aplciacion de consola o terminal.
+- que permita el encriptado desde carpetas hasta usb y discos duros, solidos o virtuales
+
 ## Features
 
 - **Strong Encryption**: Utilizes AES-GCM with Argon2 for key derivation, ensuring high security.
