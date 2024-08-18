@@ -3,15 +3,21 @@ import json
 import getpass
 from tqdm import tqdm
 from hashlib import sha256
-from argon2 import PasswordHasher
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes, hmac
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
-from cryptography.exceptions import InvalidSignature
+from cryptography.hazmat.primitives.kdf.argon2 import Argon2
 
 def generate_key(password, salt):
-    ph = PasswordHasher(time_cost=2, memory_cost=102400, parallelism=8, hash_len=32)
-    return ph.hash(password + salt.hex()).encode('utf-8')[:32]
+    kdf = Argon2(
+        memory_cost=102400,
+        time_cost=2,
+        parallelism=8,
+        hash_len=32,
+        salt=salt
+    )
+    return kdf.derive(password.encode())
 
 def decrypt_file(file_name, password):
     try:
@@ -21,7 +27,6 @@ def decrypt_file(file_name, password):
         with open(file_name, "rb") as file:
             salt = file.read(16)
             iv = file.read(12)
-            metadata_tag = file.read(16)
             metadata_length = int.from_bytes(file.read(4), 'big')
             encrypted_metadata = file.read(metadata_length)
             hmac_digest = file.read(32)
@@ -29,19 +34,19 @@ def decrypt_file(file_name, password):
         
         key = generate_key(password, salt)
         
-        try:
-            cipher_metadata = Cipher(algorithms.AES(key), modes.GCM(iv, metadata_tag), backend=default_backend())
-            decryptor_metadata = cipher_metadata.decryptor()
-            metadata = decryptor_metadata.update(encrypted_metadata) + decryptor_metadata.finalize()
-            metadata = json.loads(metadata)
-        except Exception:
-            raise ValueError("Invalid password or corrupted file. Integrity check failed.")
+        cipher_metadata = Cipher(algorithms.AES(key), modes.GCM(iv), backend=default_backend())
+        decryptor_metadata = cipher_metadata.decryptor()
+        metadata = decryptor_metadata.update(encrypted_metadata) + decryptor_metadata.finalize()
+        metadata = json.loads(metadata)
         
         hmac_key = bytes.fromhex(metadata["hmac_key"])
         
         hmac_instance = hmac.HMAC(hmac_key, hashes.SHA256(), backend=default_backend())
         hmac_instance.update(encrypted_data)
-        hmac_instance.verify(hmac_digest)
+        try:
+            hmac_instance.verify(hmac_digest)
+        except hmac.InvalidSignature:
+            raise ValueError("Invalid password or corrupted file. Integrity check failed.")
         
         cipher = Cipher(algorithms.AES(key), modes.GCM(iv), backend=default_backend())
         decryptor = cipher.decryptor()
@@ -68,8 +73,6 @@ def decrypt_file(file_name, password):
 
     except FileNotFoundError as fnf_error:
         print(fnf_error)
-    except InvalidSignature:
-        print("Invalid password or corrupted file. Integrity check failed.")
     except ValueError as e:
         print(f"Decryption error: {e}")
     except Exception as e:
