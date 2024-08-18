@@ -3,15 +3,21 @@ import json
 import getpass
 from tqdm import tqdm
 from hashlib import sha256
-from argon2 import PasswordHasher
-from argon2.exceptions import VerifyMismatchError
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes, hmac
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.kdf.argon2 import Argon2
 
 def generate_key(password, salt):
-    ph = PasswordHasher(time_cost=2, memory_cost=102400, parallelism=8, hash_len=32)
-    return ph.hash(password + salt.hex()).encode('utf-8')[:32]
+    kdf = Argon2(
+        memory_cost=102400,
+        time_cost=2,
+        parallelism=8,
+        hash_len=32,
+        salt=salt
+    )
+    return kdf.derive(password.encode())
 
 def encrypt_file(file_name, password, output_name):
     try:
