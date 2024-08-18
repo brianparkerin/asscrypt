@@ -9,7 +9,7 @@ Este proyecto esta pensado para ser una poderosa herramienta util para encriptar
 
 La velocidad de encriptacion depende de la cantidad de archivos a encriptar, la capacidad de computo y la fuerza del algoritmo de encriptacion.
 
-corregir:
+#### corregir:
 
 - el script como tal.
 - añadir las features del logo en ascii para cuando se corra el comando inciador.
