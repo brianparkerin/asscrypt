@@ -5,6 +5,10 @@
 
 SecureFile is a robust, military-grade file encryption tool built for the Kali Linux environment. Designed with security in mind, SecureFile ensures that your sensitive data remains protected from unauthorized access. This utility leverages advanced cryptographic algorithms and modern security practices to provide unparalleled file encryption and decryption capabilities.
 
+Este proyecto esta pensado para ser una poderosa herramienta util para encriptar y proteger de manera segura los archivos que desemos almacenar en la nube de forma segura y que no puedan ser escaneados, trackeados y espaidos por aquello proveedores de nubes. La herramienta te permite desde encryptar un solo archivo, hasta encriptar todo un folder tipo box con una cantidad ilimitada de archivos dentro, en incluso hasta un disco virtual, externo o solido de tu computadora.
+
+La velocidad de encriptacion depende de la cantidad de archivos a encriptar, la capacidad de computo y la fuerza del algoritmo de encriptacion.
+
 ## Features
 
 - **Strong Encryption**: Utilizes AES-GCM with Argon2 for key derivation, ensuring high security.
