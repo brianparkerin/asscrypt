@@ -159,9 +159,6 @@ This project is licensed under the MIT License. See the [LICENSE](#license) file
 ___
 
 
-<div align="center">
-  <h1>SecureFile - Protecting Your Data, One File at a Time.</h1>
-</div>
 
 
 
